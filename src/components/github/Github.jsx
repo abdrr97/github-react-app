@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router'
+import { Link } from 'react-router-dom'
 import GithubUser from './GithubUser'
 const API_URL = 'https://api.github.com/users/'
 
 const Github = () => {
-  const [username, setUsername] = useState('bradtraversy')
+  const { username } = useParams()
   const [userData, setUserData] = useState(null)
   const [userFollowers, setUserFollowers] = useState([])
   const [userRepos, setUserRepos] = useState([])
@@ -11,10 +13,10 @@ const Github = () => {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    submit()
+    fetchUser()
   }, [])
 
-  const submit = (e) => {
+  const fetchUser = (e) => {
     if (e) e.preventDefault()
     setLoading(true)
     setUserFollowers([])
@@ -59,18 +61,7 @@ const Github = () => {
   return (
     <>
       <h1 className='display-5'> Github User Search </h1>
-
-      <form className='my-5' onSubmit={(e) => submit(e)}>
-        <input
-          className='mt-5 form-control'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          type='text'
-        />
-        <small className='text-muted'>
-          press <strong>Enter</strong> to search
-        </small>
-      </form>
+      <Link to='/'>Go Back </Link>
 
       {error && <div className='alert alert-danger'>{error}</div>}
 
