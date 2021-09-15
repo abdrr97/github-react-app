@@ -6,18 +6,16 @@ import Home from './pages/Home'
 import Contact from './pages/Contact'
 import Error from './pages/Error'
 
-import { ROUTES } from './routes'
-
 const App = () => {
   return (
     <main className='container'>
       <Router>
         <Switch>
-          <Route exact path={ROUTES.HOME} component={Home} />
+          <Route exact path='/' component={Home} />
           <Route path='/contact' component={Contact} />
-          <Route path={ROUTES.PROFILE} component={Github} />
+          <Route path='/p/:username' component={Github} />
 
-          <Route path={ROUTES.NOT_FOUND} component={Error} />
+          <Route path='*' component={Error} />
         </Switch>
       </Router>
     </main>
